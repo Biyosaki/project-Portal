@@ -1,0 +1,31 @@
+.card {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.35)0px 5px 15px;
+    padding: 20px;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.card p {
+    margin-top: 3.5px;
+    font-size: 14px;
+}
+
+.card button{
+    cursor: pointer;
+    width: 50%;
+    font-size: 1rem;
+    background-color: #2f82ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 2px 0px;
+}
+
+.card button:hover{
+    transition: .4s;
+    background-color: #1d52a2;
+}
