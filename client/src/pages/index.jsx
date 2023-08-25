@@ -29,26 +29,34 @@ export default function Home() {
   }
 
 
+
   return (
     <main className={style.container}>
       <div className={style.form} >
         <h2>Bem Vindo(a) ao Portal de Projetos!</h2>
-        <p>Para começar, identifique-se com o seu username do Github para acessarmos os seus respositórios!</p>
+        <p>Para começar, identifique o username do Github para acessarmos os seus respectivos respositórios!</p>
         <input
+          id="myInput"
           type="text"
           name="user-name"
           placeholder="Usuário GitHub"
           onChange={e => setUser(e.target.value)}
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              submitUser();
+            }
+          }}
         />
         {alert ?
           <p className={style.alert}>Usuário não encontrado</p>
           : <></>
         }
 
-        <button onClick={() => submitUser()}>
+        <button id="myBtn" onClick={() => submitUser()}>
           Começar
         </button>
       </div>
     </main>
   )
 }
+
