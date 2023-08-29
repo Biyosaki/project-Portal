@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+.content{
+    width: 100%;
+}
+
 .card p {
     margin-top: 3.5px;
     font-size: 14px;
