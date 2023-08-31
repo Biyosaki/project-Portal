@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { setMode } from "@/global/mode";
+
 import { BsGithub } from "react-icons/bs"
 import { MdDarkMode, MdLogout } from "react-icons/md"
 import { GoSun} from "react-icons/go"
@@ -9,34 +12,34 @@ import style from "../styles/header.module.css"
 
 export default function Header() {
     const router = useRouter()
-    const [mode, setMode] = useState('light')
+    const dispatch = useDispatch()
     const [user, setUser] = useState()
+    const mode = useSelector(state => state.mode)
+
+  
 
     useEffect(() => {
-        const modeStorage = JSON.parse(localStorage.getItem('mode'))
-        if (modeStorage){
-            setMode(modeStorage)
-        } else {
-            setMode('light')
-        }
-
         const userData = JSON.parse(localStorage.getItem('auth'))
         setUser(userData)
     }, [])
 
     const handleMode = async () => {
         if (mode === 'light'){
-            localStorage.setItem('mode', JSON.stringify('dark'))
-            setMode('dark')
+            dispatch(setMode('dark'))
         }else {
-            localStorage.setItem('mode', JSON.stringify('light'))
-            setMode('light')
+            dispatch(setMode('light'))
         }
     }
 
     const handleLogout = async () => {
         localStorage.clear()
         router.push('/')
+    }
+
+    if ( mode === 'dark') {
+        document.body.style = "background-color: #2b2b2b; color: #ffffff; transition: .4s"
+    } else {
+        document.body.style = "background-color: #ffffff; color: #000000; transition: .4s"
     }
 
 

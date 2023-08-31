@@ -2,10 +2,13 @@ import React, { useEffect }  from "react";
 import { useRouter } from "next/router";
 
 import style from "../styles/card.module.css"
+import { useSelector } from "react-redux";
 
 
 export default function Card({data}) {
 // x existe ? <se existir> : <se nao existir/>
+
+const mode = useSelector(state => state.mode)
 
 function validateCharacterDescription(desc) {
     const dataString = String(desc)
@@ -51,7 +54,7 @@ function validateCharacterTitle(title) {
 }
 
     return (
-        <div className={style.card}>
+        <div className={mode === 'light' ? style['card']: `${style['card']} ${style['card-dark']}`}>
             <section className={style.content}>
             {data.name ?
                     <h4>{validateCharacterTitle(data.name)}</h4>

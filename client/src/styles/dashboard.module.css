@@ -1,5 +1,9 @@
+
 .content {
-    padding: 60px 150px;
+    display: flex;
+    flex-direction: column;
+    
+    padding: 120px 150px;
 }
 
 .container-grid{

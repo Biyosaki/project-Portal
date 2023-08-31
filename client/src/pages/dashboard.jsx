@@ -5,9 +5,11 @@ import api from "@/services/api";
 import { useRouter } from "next/router";
 
 import style from "../styles/dashboard.module.css"
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
     const router = useRouter()
+    const mode = useSelector(state => state.mode)
     const [repositories, setRepositories] = useState()
 
     useEffect(() => {
@@ -30,7 +32,7 @@ export default function Dashboard() {
    
 
     return (
-        <main>
+        <main className={mode === 'light' ? style['light-mode']: style['dark-mode']}>
             <Header />
             <div className={style.content}>
                 <section className={style['dashboard-panel']}>
