@@ -1,62 +1,62 @@
-import React, { useEffect }  from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import style from "../styles/card.module.css"
 import { useSelector } from "react-redux";
 
 
-export default function Card({data}) {
-// x existe ? <se existir> : <se nao existir/>
+export default function Card({ data }) {
+    // x existe ? <se existir> : <se nao existir/>
 
-const mode = useSelector(state => state.mode)
+    const mode = useSelector(state => state.mode)
 
-function validateCharacterDescription(desc) {
-    const dataString = String(desc)
-    var myArray = []
-    var newDescription
+    function validateCharacterDescription(desc) {
+        const dataString = String(desc)
+        var myArray = []
+        var newDescription
 
 
-    if (dataString.length >= 80) {
-        for (let i = 0; i < 80; i++) {
-            myArray.push(dataString[i])
+        if (dataString.length >= 80) {
+            for (let i = 0; i < 80; i++) {
+                myArray.push(dataString[i])
+            }
+            myArray.push('...')
+            newDescription = myArray.join('').toString()
+        } else {
+            newDescription = desc
         }
-        myArray.push('...')
-        newDescription = myArray.join('').toString()
-    } else {
-        newDescription = desc
+
+        return newDescription
     }
 
-    return newDescription
-}
-
-const router = useRouter()
-const specifications = async () => {
-    router.push(`/specifications/${data.name}`)
-}
-
-
-function validateCharacterTitle(title) {
-    const dataString = String(title)
-    var myArray = []
-    var newTitle
-
-    if (dataString.length >= 20) {
-        for (let i = 0; i < 20; i++) {
-            myArray.push(dataString[i])
-        }
-        myArray.push('...')
-        newTitle = myArray.join('').toString()
-    } else {
-        newTitle = title
+    const router = useRouter()
+    const specifications = async () => {
+        router.push(`/specifications/${data.name}`)
     }
 
-    return newTitle
-}
+
+    function validateCharacterTitle(title) {
+        const dataString = String(title)
+        var myArray = []
+        var newTitle
+
+        if (dataString.length >= 20) {
+            for (let i = 0; i < 20; i++) {
+                myArray.push(dataString[i])
+            }
+            myArray.push('...')
+            newTitle = myArray.join('').toString()
+        } else {
+            newTitle = title
+        }
+
+        return newTitle
+    }
 
     return (
-        <div className={mode === 'light' ? style['card']: `${style['card']} ${style['card-dark']}`}>
+        <div className={mode === 'light' ? style['card'] : `${style['card']} ${style['card-dark']}`}>
             <section className={style.content}>
-            {data.name ?
+                {data.name ?
                     <h4>{validateCharacterTitle(data.name)}</h4>
                     : <h4>Sem título</h4>
                 }
@@ -66,6 +66,7 @@ function validateCharacterTitle(title) {
                 }
             </section>
             <button onClick={() => specifications()}>Conhecer</button>
+            
         </div>
     )
 }
