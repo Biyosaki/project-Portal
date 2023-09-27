@@ -36,11 +36,11 @@ export default function Header() {
         router.push('/')
     }
 
-    if ( mode === 'dark') {
-        document.body.style = "background-color: #2b2b2b; color: #ffffff; transition: .4s"
-    } else {
-        document.body.style = "background-color: #ffffff; color: #000000; transition: .4s"
-    }
+    // if ( mode === 'dark') {
+    //     document.body.style = "background-color: #2b2b2b; color: #ffffff; transition: .4s"
+    // } else {
+    //     document.body.style = "background-color: #ffffff; color: #000000; transition: .4s"
+    // }
 
 
     return (
